@@ -16,7 +16,8 @@ lógica de chamada para as demais classes.
  */
 public class IntraneTche {
 
-    private static int indice = 0;
+    private static int indAutor = 0;
+    private static int indNoticia = 0;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -53,30 +54,30 @@ public class IntraneTche {
 
             switch (opcao) {
                 case 1:
-                    if (indice == autores.length) {
+                    if (indAutor == autores.length) {
                         System.out.println("Todos os autores foram cadastrados!\n");
                     } else {
                         cadastrarAutor(sc, autores);
                     }
                     break;
                 case 2:
-
+                    listarAutor(autores);
                     break;
                 case 3:
-                    if (indice == noticias.length) {
+                    if (indNoticia == noticias.length) {
                         System.out.println("Todas as noticias foram cadastrados!\n");
                     } else {
                         cadastrarNoticia(sc, noticias, autores);
                     }
                     break;
                 case 4:
-
+                    listarNoticia(noticias);
                     break;
                 case 5:
-
+                    noticiaAutor(sc, noticias, autores);
                     break;
                 case 6:
-
+                    excluirNoticia(sc, noticias);
                     break;
                 case 7:
                     System.exit(0);
@@ -96,15 +97,22 @@ public class IntraneTche {
 
         autor.setNome(nome);
 
-        vetorAutor[indice] = autor;
+        vetorAutor[indAutor] = autor;
 
-        indice++;
+        indAutor++;
 
         System.out.println();
     }
 
-    private static void listarAutor(Scanner leitura, Autor[] vetorAutor) {
+    private static void listarAutor(Autor[] vetorAutor) {
+        int i = 0;
+        System.out.printf("%-8s%-15s%n", "Código", "Nome");
+        while (i < indAutor) {
+            System.out.printf("%-8s%-15s%n", vetorAutor[i].getCodigo(), vetorAutor[i].getNome());
 
+            i++;
+        }
+        System.out.println();
     }
 
     private static void cadastrarNoticia(Scanner leitura, Noticia[] vetorNoticia, Autor[] vetorAutor) {
@@ -141,22 +149,76 @@ public class IntraneTche {
 
         noticia.setAutor(vetorAutor[opAutor - 1]);
 
-        vetorNoticia[indice] = noticia;
+        vetorNoticia[indNoticia] = noticia;
 
-        indice++;
+        indNoticia++;
 
         System.out.println();
     }
 
-    private static void listarNoticia(Scanner leitura, Noticia[] vetorNoticia) {
-
+    private static void listarNoticia(Noticia[] vetorNoticia) {
+        int i = 0;
+        System.out.printf("%-8s%-15s%-10s%-20s%n", "Código", "Título", "Autor", "Descrição");
+        while (i < indNoticia) {
+            if (vetorNoticia[i] != null) {
+                System.out.printf("%-8s%-15s%-10s%-20s%n",
+                        vetorNoticia[i].getCodigo(), vetorNoticia[i].getTitulo(), vetorNoticia[i].getAutor().getNome(), vetorNoticia[i].getDescricao());
+            }
+            i++;
+        }
+        System.out.println();
     }
 
-    private static void noticiaAutor(Scanner leitura, Noticia[] vetorNoticia) {
+    private static void noticiaAutor(Scanner leitura, Noticia[] vetorNoticia, Autor[] vetorAutor) {
+        listarAutor(vetorAutor);
 
+        System.out.print("Digite o nome do autor que deseja ver a notícia: ");
+        String autor = leitura.next();
+        autor += leitura.nextLine();
+
+        autor = autor.toLowerCase().trim();
+
+        System.out.println();
+
+        Boolean header = true;
+        int i = 0;
+        while (i < indNoticia) {
+            if (vetorNoticia[i].getAutor().getNome().toLowerCase().trim().contains(autor)) {
+
+                if (header) {
+                    System.out.printf("%-8s%-15s%-10s%-20s%n", "Código", "Título", "Autor", "Descrição");
+                }
+
+                System.out.printf("%-8s%-15s%-10s%-20s%n",
+                        vetorNoticia[i].getCodigo(), vetorNoticia[i].getTitulo(), vetorNoticia[i].getAutor().getNome(), vetorNoticia[i].getDescricao());
+
+                header = false;
+            }
+            i++;
+        }
+        System.out.println();
     }
 
     private static void excluirNoticia(Scanner leitura, Noticia[] vetorNoticia) {
+        listarNoticia(vetorNoticia);
 
+        System.out.print("Digite o código da notícia que deseja excluir: ");
+        int codNoticia = leitura.nextInt();
+
+        int i = 0;
+        Boolean flag = false;
+        while (i < indNoticia) {
+            if (vetorNoticia[i].getCodigo() == codNoticia) {
+                vetorNoticia[i] = null;
+                flag = true;
+            }
+            i++;
+        }
+        
+        if (flag) {
+            System.out.println("Notícia exluída!\n");
+        }
+        
+        listarNoticia(vetorNoticia);
     }
 }
