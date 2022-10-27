@@ -17,13 +17,13 @@ public class AutoPeca {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("\t\tAuto Peças\n");
+        
         System.out.print("Quantos peças serão cadastradas: ");
         int qtdLogs = sc.nextInt();
         System.out.println();
 
         Peca pecas[] = new Peca[qtdLogs];
-        
-        System.out.println("\t\tAuto Peças\n");
         
         int opcao = 1;
         while (opcao != 5) {

@@ -22,6 +22,8 @@ public class IntraneTche {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("\t\tIntraneTche\n");
+        
         System.out.print("Quantos autores serão cadastrados: ");
         int qtdAutor = sc.nextInt();
 
@@ -31,8 +33,6 @@ public class IntraneTche {
 
         Autor autores[] = new Autor[qtdAutor];
         Noticia noticias[] = new Noticia[qtdNot];
-
-        System.out.println("\t\tIntraneTche\n");
 
         int opcao = 1;
         while (opcao != 7) {
