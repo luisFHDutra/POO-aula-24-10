@@ -8,7 +8,7 @@ INSTRUÇÕES GERAIS
 -Fornecer mensagens adequadas
  */
 import java.util.Scanner;
-import Apoio.Peca;
+import Classes.Peca;
 
 public class AutoPeca {
 

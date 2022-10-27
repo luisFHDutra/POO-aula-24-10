@@ -1,5 +1,8 @@
-package Apoio;
+package Principal;
 
+import Classes.Arma;
+import Classes.Defesa;
+import Classes.Personagem;
 import java.util.Scanner;
 
 public class JogoXYZ {

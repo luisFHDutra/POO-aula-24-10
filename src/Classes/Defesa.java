@@ -1,6 +1,6 @@
-package Apoio;
+package Classes;
 
-public class Arma {
+public class Defesa {
 
     private int codigo; // gerado automaticamente
     private String descricao;

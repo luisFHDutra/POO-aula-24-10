@@ -1,8 +1,8 @@
 package Principal;
 
 import java.util.Scanner;
-import Apoio.Autor;
-import Apoio.Noticia;
+import Classes.Autor;
+import Classes.Noticia;
 
 /*
 INSTRUÇÕES GERAIS

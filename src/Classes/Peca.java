@@ -1,4 +1,4 @@
-package Apoio;
+package Classes;
 
 public class Peca {
 
