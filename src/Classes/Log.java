@@ -2,7 +2,7 @@ package Classes;
 
 import Apoio.Funcoes;
 
-public class Logs {
+public class Log {
     private String datahora;
     private Agenda contato;
     private String mensagem;
